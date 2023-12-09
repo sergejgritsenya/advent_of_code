@@ -8,7 +8,8 @@ export class DayHandler9 extends DayHandler {
     let res = 0
 
     for (const input of inputs) {
-      res += this.process(input)
+      const out = this.process(input, -1)
+      res += out.reduce((acc, cur) => cur + acc, 0)
     }
 
     return res
@@ -19,40 +20,26 @@ export class DayHandler9 extends DayHandler {
     let res = 0
 
     for (const input of inputs) {
-      res += this.process2(input)
+      const out = this.process(input, 0)
+      res += out.reduce((acc, cur) => cur - acc, 0)
     }
 
     return res
   }
 
-  private process(input: number[]): number {
+  private process(input: number[], idx: number): number[] {
     let isCheck = false
-    let res = input.at(-1)!
+    let res = [input.at(idx)!]
     let temp = input
 
     while (!isCheck) {
       const { out, check } = this.shrink(temp)
-      res += out.at(-1)!
+      res.unshift(out.at(idx)!)
       temp = out
       isCheck = check
     }
 
     return res
-  }
-
-  private process2(input: number[]): number {
-    let isCheck = false
-    let res = [input[0]]
-    let temp = input
-
-    while (!isCheck) {
-      const { out, check } = this.shrink(temp)
-      res.unshift(out[0])
-      temp = out
-      isCheck = check
-    }
-
-    return res.reduce((acc, cur) => cur - acc, 0)
   }
 
   private shrink(input: number[]): { out: number[]; check: boolean } {
