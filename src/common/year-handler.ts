@@ -12,9 +12,11 @@ export class YearHandler {
   public execute(): void {
     const years = fs.readdirSync(this.dirname).filter((item) => !Number.isNaN(Number(item)))
     for (const year of years) {
-      console.time(year)
+      console.time("executed")
       this.executeOne(year)
-      console.timeEnd(year)
+      console.log("\n")
+      console.timeEnd("executed")
+      console.log("\n")
     }
   }
 
