@@ -22,10 +22,9 @@ export class YearHandler {
 
   private executeOne(year: string): void {
     console.log(`<<${year}>>\n`)
-
-    const handlers: DayHandler[] = Object.values(require(path.resolve(this.dirname, year))).map(
-      (cls: any) => new cls(year)
-    )
+    const handlers: DayHandler[] = Object.entries(require(path.resolve(this.dirname, year)))
+      .sort(([a], [b]) => Number(a.replace("DayHandler", "")) - Number(b.replace("DayHandler", "")))
+      .map(([, cls]) => new (cls as any)(year))
 
     for (const handler of handlers) {
       handler.execute()
