@@ -1,5 +1,5 @@
 import { DayHandler } from "../../common"
-import { CARD_SCORE, JOKER_CARD_SCORE, TYPE_SCORE } from "./common_7"
+import { CARD_SCORE, JOKER_CARD_SCORE, TYPE_SCORE } from "./constants"
 
 export class DayHandler7 extends DayHandler {
   protected day = 7

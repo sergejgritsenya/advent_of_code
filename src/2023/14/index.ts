@@ -7,7 +7,6 @@ export class DayHandler14 extends DayHandler {
     return this.getScore(this.bendUp(this.prepareInput()))
   }
 
-  // 88680
   protected part2(): number {
     let input = this.prepareInput()
     const results = []
