@@ -7,7 +7,7 @@ enum EDirections {
   LEFT = 3,
 }
 
-const speeds = [
+const speedMap = [
   [0, -1],
   [1, 0],
   [0, 1],
@@ -113,9 +113,9 @@ export class DayHandler16 extends DayHandler {
         break
     }
 
-    return res.map((item) => ({
-      speed: item,
-      position: position.map((item, idx) => item + speeds[item][idx]),
+    return res.map((spd) => ({
+      speed: spd,
+      position: position.map((pos, idx) => pos + speedMap[spd][idx]),
     }))
   }
 
